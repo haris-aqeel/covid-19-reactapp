@@ -49,7 +49,7 @@ jobs:
       
     # Runs a set of commands using the runners shell
     - name: Installing surge
-      run: npm install --global surge
+      run: sudo npm install --global surge
     
     - name: deploying surge
       run: surge ./ envious-bubble.surge.sh --token ${{ secrets.COVID19SECRET }}
