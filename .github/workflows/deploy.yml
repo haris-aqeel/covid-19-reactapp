@@ -52,4 +52,4 @@ jobs:
       run: sudo npm install --global surge
     
     - name: deploying surge
-      run: surge ./ envious-bubble.surge.sh --token ${{ secrets.COVID19SECRET }}
+      run: surge ./build envious-bubble.surge.sh --token ${{ secrets.COVID19SECRET }}
