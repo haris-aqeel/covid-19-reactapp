@@ -44,13 +44,13 @@ export default function Search() {
         const convertJSON = await data.json();
         setCountryArr(convertJSON.Countries) 
         
-        if (Modes === 'Global'){
+      
         //Assessing of Global Data
         const {TotalConfirmed, TotalDeaths, TotalRecovered} = convertJSON.Global;
         setPatient(TotalConfirmed);
         setDeath(TotalDeaths);
         setRecovered(TotalRecovered);}
-      }
+      
 
     loadData()
 
@@ -62,12 +62,8 @@ export default function Search() {
     e.preventDefault();
 
     if (Modes === 'Country' & country!==undefined & country.length>1){
-        let selectedCountry = countryarr.filter((curr)=>{
-        if (curr.Country === (country[0].toUpperCase()+ country.slice(1).toLowerCase())){
-            return curr.Country
-            }
-            
-        })
+        var selectedCountry = countryarr.filter(curr=> curr.Country === (country[0].toUpperCase()+ country.slice(1).toLowerCase()))
+        
 
         if (selectedCountry[0] === undefined){
           alert('Enter A Valid Country Name')
