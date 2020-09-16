@@ -6,6 +6,7 @@ import Select from '@material-ui/core/Select';
 import Stats from '../components/Stats';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import DonoughtChart from './DonoghtChart'
 
 export default function Search() {
   // Material UI Styles
@@ -24,6 +25,10 @@ export default function Search() {
         width: '300px',
         height: '250px'
     }}))
+
+    
+    
+
   const classes = useStyles();
   
   // State Variables using Use State
@@ -81,6 +86,27 @@ export default function Search() {
       }
   }
 
+  const datass = {
+    labels: [
+      'Deaths',
+      'Recovered',
+      'Total Patients'
+    ],
+    datasets: [{
+      data: [death,recover,patient],
+      backgroundColor: [
+      '#8D021F',
+      '#00BFFF',
+      '#9ACD32'
+      ],
+      hoverBackgroundColor: [
+      '#FF6384',
+      '#00FA9A',
+      '#36A2EB'
+      ]
+    }]
+  };
+
   return (
     <>
     <div style={{textAlign: 'center', margin: '10px auto'}}>
@@ -114,11 +140,13 @@ export default function Search() {
         <Button type="submit" variant="contained" color="primary">Search Stats</Button>
 
       </form>
+      
 
       
     </div>
 
     <Stats classes={classes}  patients={patient}  deaths ={death} recovered={recover}/>
+    <DonoughtChart data={datass}/>
     
     </>
   );

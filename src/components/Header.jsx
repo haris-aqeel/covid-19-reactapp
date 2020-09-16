@@ -5,7 +5,7 @@ const Header = () => {
     
     return(
         <div className='Header'>
-            <img src={Label} style={{marginTop: "30px" }} alt="covid19Title"/>
+            <img src={Label} style={{marginTop: "30px",}} alt="covid19Title"/>
         </div>
 
     );

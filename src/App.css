@@ -6,6 +6,23 @@
 
 }
 
+#Paper{
+  padding-bottom: 100px;
+}
+
+@media only screen and (max-width: 450px){
+  .Header img{
+    width: 300px;
+  }
+
+  .Dougnut{
+    height: 300px;
+  }
+
+}
+
+
+
 .paper-head{
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   word-spacing: 2px;
