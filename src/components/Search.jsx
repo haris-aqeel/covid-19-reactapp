@@ -65,7 +65,8 @@ export default function Search() {
         let selectedCountry = countryarr.filter((curr)=>{
         if (curr.Country === (country[0].toUpperCase()+ country.slice(1).toLowerCase())){
             return curr.Country
-            } 
+            }
+            
         })
 
         if (selectedCountry[0] === undefined){

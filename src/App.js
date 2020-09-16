@@ -17,3 +17,4 @@ function App() {
 }
 
 export default App;
+  // "build": "react-scripts build",
