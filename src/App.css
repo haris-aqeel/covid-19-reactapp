@@ -42,3 +42,9 @@ h3{
   font-size: 42px;
   
 }
+ 
+.lineChart{
+  margin: 100px auto;
+  width: 90%;
+  height: 90%;
+} 

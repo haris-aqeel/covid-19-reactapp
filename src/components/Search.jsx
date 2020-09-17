@@ -39,7 +39,10 @@ export default function Search() {
   const [patient, setPatient] = useState()
   const [death, setDeath] = useState()
   const [recover, setRecovered] = useState()
-  
+  const [topTrendCountryName, setTopTrendCountryName] = useState();
+  const [topTrendCountryConfirmed,setTopTrendCountryConfirmed] = useState()
+  const [topTrendCountryDeaths,setTopTrendCountryDeaths] = useState()
+  const [topTrendCountryRecovered,setTopTrendCountryRecovered] = useState()
 
 
   useEffect(()=>{
@@ -49,24 +52,30 @@ export default function Search() {
         const data = await fetch(api);
         const convertJSON = await data.json();
         setCountryArr(convertJSON.Countries) 
-        
-      
+        setTopTrendCountryName(convertJSON.Countries.filter((curr)=>curr.TotalConfirmed>450000).map((current)=>current.Country))        
+        setTopTrendCountryConfirmed(convertJSON.Countries.filter((curr)=>curr.TotalConfirmed>450000).map((current)=>current.TotalConfirmed))
+        setTopTrendCountryDeaths(convertJSON.Countries.filter((curr)=>curr.TotalConfirmed>450000).map((current)=>current.TotalDeaths))
+        setTopTrendCountryRecovered(convertJSON.Countries.filter((curr)=>curr.TotalConfirmed>450000).map((current)=>current.TotalRecovered))
         //Assessing of Global Data
         const {TotalConfirmed, TotalDeaths, TotalRecovered} = convertJSON.Global;
         setPatient(TotalConfirmed);
         setDeath(TotalDeaths);
-        setRecovered(TotalRecovered);}
-      
+        setRecovered(TotalRecovered);
+        
+        
+        
+
+
+        }
 
     loadData()
-
   },[])
 
 
   const checkInputs = (e) => {
     
     e.preventDefault();
-
+    
     if (Modes === 'Country' & country!==undefined & country.length>1){
         var selectedCountry = countryarr.filter(curr=> curr.Country === (country[0].toUpperCase()+ country.slice(1).toLowerCase()))
         
@@ -108,12 +117,12 @@ export default function Search() {
     }]
   };
   
-  
+  // topTrendCountry.map((current)=>current.Country)
   const datal = {
-    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    labels: topTrendCountryName,
     datasets: [
       {
-        label: 'My First dataset',
+        label: 'Corona Cases',
         fill: false,
         lineTension: 0.1,
         backgroundColor: 'rgba(75,192,192,0.4)',
@@ -124,15 +133,58 @@ export default function Search() {
         borderJoinStyle: 'miter',
         pointBorderColor: 'rgba(75,192,192,1)',
         pointBackgroundColor: '#fff',
-        pointBorderWidth: 1,
+        pointBorderWidth: 2,
         pointHoverRadius: 5,
         pointHoverBackgroundColor: 'rgba(75,192,192,1)',
         pointHoverBorderColor: 'rgba(220,220,220,1)',
         pointHoverBorderWidth: 2,
         pointRadius: 1,
         pointHitRadius: 10,
-        data: [65, 59, 80, 81, 56, 55, 40]
+        data: topTrendCountryConfirmed
+      },
+      {
+        label: 'Corona Deaths',
+        fill: false,
+        lineTension: 0.1,
+        backgroundColor: 'rgba(255,0,0,0.4)',
+        borderColor: 'rgb(255,0,0)',
+        borderCapStyle: 'butt',
+        borderDash: [],
+        borderDashOffset: 0.0,
+        borderJoinStyle: 'miter',
+        pointBorderColor: 'rgba(255,0,0,0.4)',
+        pointBackgroundColor: '#fff',
+        pointBorderWidth: 2,
+        pointHoverRadius: 5,
+        pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+        pointHoverBorderColor: 'rgba(220,220,220,1)',
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+        data: topTrendCountryDeaths
+      },
+      {
+        label: 'Corona Recovered',
+        fill: false,
+        lineTension: 0.1,
+        backgroundColor: 'rgba(0,255,0,0.4)',
+        borderColor: 'rgb(0,255,0)',
+        borderCapStyle: 'butt',
+        borderDash: [],
+        borderDashOffset: 0.0,
+        borderJoinStyle: 'miter',
+        pointBorderColor: 'rgba(0,255,0,0.4)',
+        pointBackgroundColor: '#fff',
+        pointBorderWidth: 2,
+        pointHoverRadius: 5,
+        pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+        pointHoverBorderColor: 'rgba(220,220,220,1)',
+        pointHoverBorderWidth: 2,
+        pointRadius: 1,
+        pointHitRadius: 10,
+        data: topTrendCountryRecovered
       }
+
     ]
   };
 
@@ -176,7 +228,9 @@ export default function Search() {
 
     <Stats classes={classes}  patients={patient}  deaths ={death} recovered={recover}/>
     <DonoughtChart data={datass}/>
-    <LineChart data={datal}/>
+    <div className="lineChart">
+      <LineChart data={datal}/>
+    </div>
     
     </>
   );

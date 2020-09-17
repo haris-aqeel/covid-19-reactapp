@@ -7,8 +7,8 @@ export default function LineChart(props) {
 
     return (
       <div>
-        <h2>Line Example</h2>
-        <Line data={props.data}  />
+        <h2> Top 10 Corona Patient Countries </h2>
+        <Line data={props.data} height={270} options={{maintainAspectRatio: false}}/>
       </div>
     );
   }
