@@ -52,10 +52,10 @@ export default function Search() {
         const data = await fetch(api);
         const convertJSON = await data.json();
         setCountryArr(convertJSON.Countries) 
-        setTopTrendCountryName(convertJSON.Countries.filter((curr)=>curr.TotalConfirmed>450000).map((current)=>current.Country))        
-        setTopTrendCountryConfirmed(convertJSON.Countries.filter((curr)=>curr.TotalConfirmed>450000).map((current)=>current.TotalConfirmed))
-        setTopTrendCountryDeaths(convertJSON.Countries.filter((curr)=>curr.TotalConfirmed>450000).map((current)=>current.TotalDeaths))
-        setTopTrendCountryRecovered(convertJSON.Countries.filter((curr)=>curr.TotalConfirmed>450000).map((current)=>current.TotalRecovered))
+        setTopTrendCountryName(convertJSON.Countries.filter((curr)=>curr.TotalConfirmed>850000).map((current)=>current.Country))        
+        setTopTrendCountryConfirmed(convertJSON.Countries.filter((curr)=>curr.TotalConfirmed>850000).map((current)=>current.TotalConfirmed))
+        setTopTrendCountryDeaths(convertJSON.Countries.filter((curr)=>curr.TotalConfirmed>850000).map((current)=>current.TotalDeaths))
+        setTopTrendCountryRecovered(convertJSON.Countries.filter((curr)=>curr.TotalConfirmed>850000).map((current)=>current.TotalRecovered))
         //Assessing of Global Data
         const {TotalConfirmed, TotalDeaths, TotalRecovered} = convertJSON.Global;
         setPatient(TotalConfirmed);
